@@ -10,7 +10,7 @@ const Items = () => {
     document.title = 'Items';
 
     const getAllItems = async () => {
-      const res = await fetch('http://localhost:5001/items', {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/items`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -30,14 +30,17 @@ const Items = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5001/delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/delete/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
       setAllItems((prevItems) => ({
         ...prevItems,
         userItems: prevItems.userItems.filter((item) => item._id !== id),

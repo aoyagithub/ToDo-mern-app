@@ -13,7 +13,9 @@ const UpdateItem = () => {
     document.title = 'Edit';
 
     const getSingleItem = async () => {
-      const res = await fetch(`http://localhost:5001/item/${params.id}`);
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/item/${params.id}`
+      );
       const jsonRes = await res.json();
       setName(jsonRes.singleItem.name);
     };
@@ -23,17 +25,20 @@ const UpdateItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5001/update/${params.id}`, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({
-          name,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/update/${params.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({
+            name,
+          }),
+        }
+      );
       navigate('/');
     } catch (err) {
       alert('Failed to edite item');

@@ -10,7 +10,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5001/signup', {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/signup`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
