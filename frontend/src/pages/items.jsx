@@ -30,17 +30,14 @@ const Items = () => {
       return;
     }
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/delete/${id}`,
-        {
-          method: 'DELETE',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
+      await fetch(`${process.env.REACT_APP_BASE_URL}/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       setAllItems((prevItems) => ({
         ...prevItems,
         userItems: prevItems.userItems.filter((item) => item._id !== id),

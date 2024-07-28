@@ -25,20 +25,17 @@ const UpdateItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/update/${params.id}`,
-        {
-          method: 'PUT',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            name,
-          }),
-        }
-      );
+      await fetch(`${process.env.REACT_APP_BASE_URL}/update/${params.id}`, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({
+          name,
+        }),
+      });
       navigate('/');
     } catch (err) {
       alert('Failed to edite item');
