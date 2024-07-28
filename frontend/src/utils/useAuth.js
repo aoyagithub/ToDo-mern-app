@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 const useAuth = () => {
   const [loginUser, setLoginUser] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const currentPath = location.pathname;
+
+    if (currentPath === '/signup' || currentPath === '/login') {
+      return;
+    }
 
     if (!token) {
       navigate('/login');
@@ -19,7 +25,7 @@ const useAuth = () => {
     } catch (error) {
       navigate('/login');
     }
-  }, [navigate]);
+  }, [navigate, location]);
 
   return loginUser;
 };
