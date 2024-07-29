@@ -28,14 +28,14 @@ const Header = () => {
   };
 
   return (
-    <header className="lg:flex lg:items-center lg:justify-between h-14 px-14 bg-white text-slate-600">
+    <header className="flex items-center justify-between h-14 px-6 lg:px-14 bg-white text-slate-600">
       <div>
         <Link to="/" className="text-xl font-semibold">
           ToDo
         </Link>
       </div>
       <nav>
-        <ul className="lg:flex lg:items-center lg:justify-between text-base ">
+        <ul className="flex items-center justify-between text-base ">
           {!isLoggedIn && (
             <li className="pl-7">
               <Link to="/signup">Sign up</Link>

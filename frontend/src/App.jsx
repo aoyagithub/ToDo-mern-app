@@ -12,7 +12,7 @@ const App = () => {
     <BrowserRouter>
       <div className="w-full bg-slate-100 h-full">
         <Header />
-        <div className="max-w-3xl lg:flex lg:justify-center mx-auto pt-14">
+        <div className="max-w-3xl lg:flex lg:justify-center mx-auto pt-14 px-6 ">
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
